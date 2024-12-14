@@ -33,11 +33,14 @@ public class InfoboxStartMainPage extends basePage {
     // Вводимо код в поле
     public InfoboxStartMainPage enterCodeInPhoneField(String PhoneCoderUser) {
         page.locator(CodeFieldPanelAuthorizationPage).fill(PhoneCoderUser);
+        System.out.println("Element found inside iframe with id: ");
         return this;
     }
 
     // Отримуємо значення з поля вводу коду
     public String getCodeFieldValue() {
+        System.out.println("Element found inside iframe with id:2 ");
         return page.locator(CodeFieldPanelAuthorizationPage).inputValue();
+
     }
 }

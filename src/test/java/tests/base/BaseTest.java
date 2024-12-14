@@ -1,6 +1,7 @@
 package tests.base;
 
 import com.microsoft.playwright.*;
+import common.CommonActions;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.InfoboxPages.InfoboxStartMainPage;
+import pages.InfoboxPages.InfoboxSearchTask;
 import pages.base.basePage;
 
 import java.io.File;
@@ -35,7 +37,7 @@ public class BaseTest {
     protected basePage BasePage;
     protected pages.InfoboxPages.InfoboxStartMainPage InfoboxStartMainPage;
 //    protected InfoboxQuitPage InfoboxQuitPage;
-//    protected InfoboxSearchTask InfoboxSearchTask;
+    protected pages.InfoboxPages.InfoboxSearchTask InfoboxSearchTask;
 //    protected InfoboxCreationTask InfoboxCreationTask;
 //    protected InfoboxFinalizationTask InfoboxFinalizationTask;
 
@@ -44,16 +46,14 @@ public class BaseTest {
 
     @BeforeAll
     void setup() {
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(!HEADLESS_MODE));
-        context = browser.newContext();
-        page = context.newPage();
+        browser = CommonActions.createDriver();
+        page = CommonActions.getPage(); // Отримуємо сторінку для тестування
 
         // Ініціалізація всіх сторінок
         BasePage = new basePage(page);
         InfoboxStartMainPage = new InfoboxStartMainPage(page);
 //        InfoboxQuitPage = new InfoboxQuitPage(page);
-//        InfoboxSearchTask = new InfoboxSearchTask(page);
+        InfoboxSearchTask = new InfoboxSearchTask(page);
 //        InfoboxCreationTask = new InfoboxCreationTask(page);
 //        InfoboxFinalizationTask = new InfoboxFinalizationTask(page);
 
@@ -84,11 +84,11 @@ public class BaseTest {
         }
     }
 
-    @AfterAll
-    void teardown() {
-        if (!HOLD_BROWSER_OPEN) {
-            browser.close();
-        }
+//    @AfterAll
+//    void teardown() {
+//        if (!HOLD_BROWSER_OPEN) {
+//            browser.close();
+//        }
 //        playwright.close();
-    }
+//    }
 }

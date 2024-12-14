@@ -12,11 +12,6 @@ public class basePage {
         this.page = page;
     }
 
-    // Метод для переходу на вказаний URL
-    public void goToURL(String url) {
-        page.navigate(url);
-    }
-
     // Очікування, щоб елемент став видимим
     public Locator waitElementIsVisible(Locator element) {
         element.waitFor(new Locator.WaitForOptions().setTimeout(EXPLICT_WAIT));

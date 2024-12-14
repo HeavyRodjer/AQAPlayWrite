@@ -10,7 +10,7 @@ import static constans.Constans.Urls.INFOBOX_PAGE;
 
 public class TestInfoboxPageStartMainPage extends BaseTest {
 
-    static String chekPhoneNumberUser = "(95) 623 51 621";
+    static String chekPhoneNumberUser = "(95) 623 51 62";
     static String chekCodeNumberUser = "12345";
 
     @Test
@@ -33,7 +33,6 @@ public class TestInfoboxPageStartMainPage extends BaseTest {
         infoboxStartMainPage.enterCodeInPhoneField("12345");
         String actualCodeNumber = infoboxStartMainPage.getCodeFieldValue();
         Assertions.assertEquals(chekCodeNumberUser, actualCodeNumber, "Невідповідність коду телефону!");
-
         // Натискаємо кнопку "Продовжити"
         infoboxStartMainPage.clickButtonContinueAuthorizationPage();
     }
